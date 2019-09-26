@@ -1,5 +1,5 @@
 <template>
-  <div @click="itemClick">
+  <div @click="itemClick" class='bar-item'>
     <div v-if="!isActive">
       <slot name="item-icon"></slot>
     </div>
@@ -48,12 +48,12 @@ export default {
 </script>
 
 <style>
-div {
+.bar-item div {
   font-size: 12px;
   margin-top: 2px;
 }
 
-div img {
+.bar-item img {
   margin-top: 5px;
   width: 22px;
   height: 22px;

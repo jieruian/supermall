@@ -4,14 +4,15 @@
          <home-swiper :banners="banners" />
          <recommend-view :recommends='recommends' />
          <feature-view />
+         <tab-control class="tab-control" :titles="['流行','新款','推荐']" />
 
 
-         
+
          <div>
-             <br>
-             <br>
-             <br>
-             <br>
+             <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+             <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
              <h1>我是啊</h1>
 
@@ -29,6 +30,7 @@ import {getHomeMultidata} from "network/home"
 import homeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
 import FeatureView from './childComps/FeatureView'
+ import TabControl from 'components/content/tabControl/TabControl'
 
     export default {
         name: 'Home',
@@ -36,7 +38,8 @@ import FeatureView from './childComps/FeatureView'
             navBar,
             homeSwiper,
             RecommendView,
-            FeatureView
+            FeatureView,
+            TabControl
         },
         data() {
             return {
@@ -60,7 +63,10 @@ import FeatureView from './childComps/FeatureView'
 .home-nav {
     background-color: var(--color-tint);
     color: white;
-    font-size: 100px;
+}
+.tab-control{
+    position: sticky;
+    top: 0px;
 }
 
 

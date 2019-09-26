@@ -41,7 +41,7 @@
 }
 
 #center {
-   font-size: 100px; 
+   font-size: 14px; 
 }
 
 </style>
