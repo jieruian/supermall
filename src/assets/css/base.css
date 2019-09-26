@@ -1,3 +1,4 @@
+
 @import "./normalize.css";
 
 /*:root -> 获取根元素html*/
@@ -17,6 +18,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+div ,a ,img{
+  margin: 0;
+  padding: 0;
+}
 
 body {
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
@@ -28,6 +33,7 @@ body {
     color: var(--color-text);
     /* rem vw/vh */
     width: 100vw;
+    
 }
 
 a {
