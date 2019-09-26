@@ -4,7 +4,7 @@
         <div class='left'><slot name="left">
            好的
          </slot></div>
-        <div class="center"><slot name="center">
+        <div class="center"><slot name="center" id="center">
 
 
         </slot></div>
@@ -28,15 +28,20 @@
     line-height: 44px;
     text-align: center;
     box-shadow: 0 1px 1px rgba(100,100,100,.1);
-    background-color: pink
+    background-color: pink;
    
 
 }
 .right , .left{
     width: 60px;
 }
-.center {
+.nav-bar .center {
     flex: 1;
+    /* background-color: aquamarine */
+}
+
+#center {
+   font-size: 100px; 
 }
 
 </style>
