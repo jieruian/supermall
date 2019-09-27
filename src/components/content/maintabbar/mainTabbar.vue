@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  class='mainintabbar'>
     <tab-bar>
       <tab-bar-item link="/home">
         <img slot="item-icon" src="../../../assets/img/tabbar/home.svg" alt="" />
@@ -55,4 +55,8 @@ export default {
 </script>
 
 <style >
+.mainintabbar{
+  z-index: 9999;
+}
+
 </style>
