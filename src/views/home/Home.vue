@@ -1,23 +1,16 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+
+    <scroll class="content" ref="scroll">
     <home-swiper :banners="banners" />
     <recommend-view :recommends="recommends" />
     <feature-view />
     <tab-control class="tab-control" :titles="['流行', '新款', '推荐']" @tabClick="tabClick"/>
     <good-list :goods="showGoods"  class='good-list'/>
+    </scroll>
+    <back-top @click.native="backTop"></back-top>
 
-    <div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-      <h1>我是啊</h1>
-
-      <br />
-      <br />
-    </div>
   </div>
 </template>
 
@@ -30,6 +23,8 @@ import RecommendView from "./childComps/RecommendView";
 import FeatureView from "./childComps/FeatureView";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodList from "components/content/goods/GoodsList";
+import Scroll from 'components/common/scroll/Scroll'
+import BackTop from 'components/content/backTop/BackTop'
 
 export default {
   name: "Home",
@@ -39,7 +34,9 @@ export default {
     RecommendView,
     FeatureView,
     TabControl,
-    GoodList
+    GoodList,
+    Scroll,
+    BackTop
   },
   data() {
     return {
@@ -85,6 +82,10 @@ export default {
 
     },
 
+    backTop(){
+        this.$refs.scroll.scrollTo(0,0)
+    },
+
 
 
     getHomeMultidata() {
@@ -111,9 +112,27 @@ export default {
 </script>
 
 <style  scoped>
+#home {
+    position: relative;
+    height: 100vh;
+    /* padding-top: 44px; */
+}
+
 .home-nav {
   background-color: var(--color-tint);
-  color: white;
+  color: rgb(255, 248, 248);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+.content {
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }
 .tab-control {
   position: sticky;

@@ -54,7 +54,7 @@ export default {
 };
 </script>
 
-<style >
+<style  scoped>
 .mainintabbar{
   z-index: 9999;
 }
