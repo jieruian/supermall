@@ -2,14 +2,14 @@
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
 
-    <scroll class="content" ref="scroll">
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="scrollDelegate">
     <home-swiper :banners="banners" />
     <recommend-view :recommends="recommends" />
     <feature-view />
     <tab-control class="tab-control" :titles="['流行', '新款', '推荐']" @tabClick="tabClick"/>
     <good-list :goods="showGoods"  class='good-list'/>
     </scroll>
-    <back-top @click.native="backTop"></back-top>
+    <back-top @click.native="backTop" v-show="isShowToTop"></back-top>
 
   </div>
 </template>
@@ -48,6 +48,9 @@ export default {
         sell: { page: 0, list: [] }
       },
       currentType: 'pop',
+      isShowToTop: false,
+      screenWidth: 0,
+      screenHeight:0
     }
   },
   created() {
@@ -65,7 +68,21 @@ export default {
       }
   },
 
+beforeMount(height) {
+ 
+        var h = document.documentElement.clientHeight || document.body.clientHeight;
+ 
+        this.screenHeight = h ; //减去页面上固定高度height
+ 
+    },
+
+
   methods: {
+    scrollDelegate(position){
+      // 1.判断BackTop是否显示
+        this.isShowToTop = (-position.y) > this.screenHeight
+    },
+    
       tabClick(index) {
        console.log('点击了'+index);
        switch (index) {

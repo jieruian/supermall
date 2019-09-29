@@ -1,6 +1,6 @@
 <template>
     <div class='recommend'>
-        <div v-for="item in recommends" :key="item" class='recommendItem'>
+        <div v-for="(item) in recommends" :key="item+Math.random()" class='recommendItem'>
             <a :href="item.link">
                 <img :src="item.image" alt="">
                 <div>{{item.title}}</div>

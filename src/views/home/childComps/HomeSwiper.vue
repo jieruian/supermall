@@ -1,7 +1,7 @@
 <template>
     <div>
         <Swiper>
-         <swiper-item v-for="item in banners" :key="item"> 
+         <swiper-item v-for="(item) in banners" :key="item+Math.random()"> 
           <a :href="item.link">
               <img :src="item.image" alt="">
           </a>
