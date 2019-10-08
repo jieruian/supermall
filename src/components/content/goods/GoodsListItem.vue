@@ -1,13 +1,11 @@
 <template>
-  <div class="goods-item">
-    <a :href="goods.link">
+  <div class="goods-item" @click="itemClick">
       <img :src="goods.show.img" alt="" @load="imageLoad" />
       <div class="goods-info">
         <p>{{ goods.title }}</p>
         <span class="price">¥{{ goods.price }}</span>
         <span class="collect">{{ goods.cfav }}</span>
       </div>
-    </a>
   </div>
 </template>
 
@@ -27,7 +25,11 @@ export default {
         // this.$bus.$emit('itemImageLoad')
         // console.log('图片加载啦')
         this.$bus.$emit('itemImageLoad')      
-      }
+      },
+    itemClick() {
+      console.log("点击了详情"+this.goods.iid);
+      this.$router.push('/detail/' + this.goods.iid)
+    }
 
   },
 };

@@ -2,12 +2,11 @@
 <template>
     <div class='nav-bar'>
         <div class='left'><slot name="left">
-           好的
          </slot></div>
+
         <div class="center"><slot name="center" id="center">
-
-
         </slot></div>
+        
         <div class='right'><slot name="right">
             
         </slot></div>

@@ -2,6 +2,14 @@
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
 
+<tab-control
+        class="tab-control"
+        :titles="['流行', '新款', '推荐']"
+        @tabClick="tabClick"
+        v-show="isShowTabControl"
+        ref="tabControl1"       
+      />
+
     <scroll
       class="content"
       ref="scroll"
@@ -10,13 +18,15 @@
       :pullUpLoad="true"
       @pullingUp="loadMore"
     >
-      <home-swiper :banners="banners" />
+
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
       <recommend-view :recommends="recommends" />
       <feature-view />
       <tab-control
-        class="tab-control"
+        
         :titles="['流行', '新款', '推荐']"
         @tabClick="tabClick"
+        ref="tabControl2"
       />
       <good-list :goods="showGoods" class="good-list" />
     </scroll>
@@ -61,7 +71,9 @@ export default {
       currentType: "pop",
       isShowToTop: false,
       screenWidth: 0,
-      screenHeight: 0
+      screenHeight: 0,
+      isShowTabControl : false,
+      tabOffsetTop: 0
     };
   },
   created() {
@@ -77,12 +89,13 @@ export default {
      // 1.图片加载完成的事件监听
       const refresh = debounce(this.$refs.scroll.refresh, 80)
       this.$bus.$on('itemImageLoad', () => {
-        refresh()       
-        
+        refresh()             
       })
   },
 
   computed: {
+
+
     showGoods() {
       return this.goods[this.currentType].list;
     }
@@ -95,6 +108,12 @@ export default {
   },
 
   methods: {
+
+     swiperImageLoad() {
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
+        // console.log('轮播图哦');
+        
+      },
     loadMore(){
       console.log("加载更多啦")
       this.getHomeGoods(this.currentType)
@@ -104,6 +123,9 @@ export default {
     scrollDelegate(position) {
       // 1.判断BackTop是否显示
       this.isShowToTop = -position.y > this.screenHeight;
+       // 2.决定tabControl是否吸顶(position: fixed)
+       this.isShowTabControl = (-position.y) > this.tabOffsetTop
+      
     },
 
     tabClick(index) {
@@ -119,6 +141,8 @@ export default {
           this.currentType = "sell";
           break;
       }
+       this.$refs.tabControl1.currentIndex = index;
+       this.$refs.tabControl2.currentIndex = index;
     },
 
     backTop() {
@@ -174,8 +198,8 @@ export default {
   overflow: hidden;
 }
 .tab-control {
-  position: sticky;
-  top: 0px;
-  z-index: 2;
+    position: relative;
+    z-index: 9;
+  
 }
 </style>
