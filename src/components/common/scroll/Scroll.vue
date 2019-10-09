@@ -77,6 +77,10 @@ export default {
       console.log('----------');
         this.scroll && this.scroll.refresh()
       },
+     //获取滚动的y值
+    getScrollY() {
+    return this.scroll ? this.scroll.y : 0
+   }
     
   }
 };

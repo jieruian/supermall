@@ -7,7 +7,7 @@
         :titles="['流行', '新款', '推荐']"
         @tabClick="tabClick"
         v-show="isShowTabControl"
-        ref="tabControl1"       
+        ref="tabControl1"
       />
 
     <scroll
@@ -23,7 +23,7 @@
       <recommend-view :recommends="recommends" />
       <feature-view />
       <tab-control
-        
+
         :titles="['流行', '新款', '推荐']"
         @tabClick="tabClick"
         ref="tabControl2"
@@ -73,7 +73,8 @@ export default {
       screenWidth: 0,
       screenHeight: 0,
       isShowTabControl : false,
-      tabOffsetTop: 0
+      tabOffsetTop: 0,
+      saveY: 0
     };
   },
   created() {
@@ -83,13 +84,13 @@ export default {
     this.getHomeGoods("pop");
     this.getHomeGoods("sell");
     this.getHomeGoods("new");
-    
+
   },
   mounted() {
      // 1.图片加载完成的事件监听
       const refresh = debounce(this.$refs.scroll.refresh, 80)
       this.$bus.$on('itemImageLoad', () => {
-        refresh()             
+        refresh()
       })
   },
 
@@ -106,13 +107,28 @@ export default {
 
     this.screenHeight = h; //减去页面上固定高度height
   },
+  destroyed() {
+    // console.log('被销毁');
+    
+  },
+  activated() {
+    // console.log('活跃状态');
+    this.$refs.scroll.scrollTo(0,this.saveY,0)
+    this.$refs.scroll.refresh()
+  },  
+  deactivated() {
+    // console.log('不活跃状态');
+    this.saveY = this.$refs.scroll.getScrollY()
+    
+  },
+
 
   methods: {
 
      swiperImageLoad() {
         this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
         // console.log('轮播图哦');
-        
+
       },
     loadMore(){
       console.log("加载更多啦")
@@ -125,7 +141,7 @@ export default {
       this.isShowToTop = -position.y > this.screenHeight;
        // 2.决定tabControl是否吸顶(position: fixed)
        this.isShowTabControl = (-position.y) > this.tabOffsetTop
-      
+
     },
 
     tabClick(index) {
@@ -200,6 +216,6 @@ export default {
 .tab-control {
     position: relative;
     z-index: 9;
-  
+
 }
 </style>
