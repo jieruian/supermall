@@ -13,6 +13,7 @@ export function request(config) {
   instance.interceptors.request.use(config => {
     return config
   }, err => {
+    // console.log('网络错误')
     // console.log(err);
   })
 

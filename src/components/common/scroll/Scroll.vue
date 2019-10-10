@@ -74,7 +74,7 @@ export default {
       },
     //刷新图片
     refresh() {
-      console.log('----------');
+      console.log('+++++++++');
         this.scroll && this.scroll.refresh()
       },
      //获取滚动的y值

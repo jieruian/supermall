@@ -35,7 +35,7 @@ import navBar from "components/common/navbar/NavBar";
        methods: {
            itemClick(index){
                this.currentIndex = index
-               
+               this.$emit('titleClick',index)
            } ,
            backClick() {
                console.log('看看那');

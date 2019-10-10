@@ -46,6 +46,7 @@ import GoodList from "components/content/goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
 import BackTop from "components/content/backTop/BackTop";
 import {debounce} from "common/utils";
+import { itemListenerMixin } from "common/mixin.js";
 
 export default {
   name: "Home",
@@ -59,6 +60,7 @@ export default {
     Scroll,
     BackTop
   },
+  mixins: [itemListenerMixin],
   data() {
     return {
       banners: [],
@@ -86,16 +88,15 @@ export default {
     this.getHomeGoods("new");
 
   },
-  mounted() {
-     // 1.图片加载完成的事件监听
-      const refresh = debounce(this.$refs.scroll.refresh, 80)
-      this.$bus.$on('itemImageLoad', () => {
-        refresh()
-      })
-  },
+  // mounted() {
+  //    // 1.图片加载完成的事件监听
+  //     const refresh = debounce(this.$refs.scroll.refresh, 80)
+  //     this.$bus.$on('itemImageLoad', () => {
+  //       refresh()
+  //     })
+  // },
 
   computed: {
-
 
     showGoods() {
       return this.goods[this.currentType].list;
@@ -119,12 +120,13 @@ export default {
   deactivated() {
     // console.log('不活跃状态');
     this.saveY = this.$refs.scroll.getScrollY()
+    //移除item画面监听
+    this.$bus.$off('itemImageLoad',this.imageItemListener)
     
   },
 
 
   methods: {
-
      swiperImageLoad() {
         this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
         // console.log('轮播图哦');
