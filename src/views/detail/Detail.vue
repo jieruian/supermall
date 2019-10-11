@@ -131,6 +131,16 @@ export default {
   methods: {
     addToCart() {
       console.log("加入购物车");
+      // 1.创建对象
+        const product = {}
+        // 2.对象信息
+        product.iid = this.iid;
+        product.imgURL = this.topImages[0];
+        product.title = this.goods.title;
+        product.desc = this.goods.desc;
+        product.newPrice = this.goods.newPrice;
+        // this.$store.commit('addCart',product);
+        this.$store.dispatch('addCart',product)
     },
     imageLoad() {
       this.$refs.scroll.refresh();
@@ -142,7 +152,7 @@ export default {
       this.themeTops.push(this.$refs.comment.$el.offsetTop);
       this.themeTops.push(this.$refs.recommend.$el.offsetTop);
       this.themeTops.push(Number.MAX_VALUE);
-      console.log(this.themeTops);
+      // console.log(this.themeTops);
       // }, 400);
     },
     titleClick(index) {
