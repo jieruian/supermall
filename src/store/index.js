@@ -1,13 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import getters from './getters'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  
   state: {
     cartList: [],
 
   },
+  getters,
   mutations: {
  /*   addCart(state, playload) {
       // 1.查看是否添加过
@@ -33,6 +37,7 @@ export default new Vuex.Store({
     },
     addToCart(state,playload){
        playload.columns = 1
+       playload.checked = true
        state.cartList.push(playload)
     }
   },

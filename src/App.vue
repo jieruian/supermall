@@ -20,7 +20,9 @@ export default {
 </script>
 
 <style>
-
+#app {
+background-color: white;
+}
  
  @import "assets/css/base.css";
 </style>

@@ -196,6 +196,7 @@ export default {
 #home {
   position: relative;
   height: 100vh;
+  background-color: white
   /* padding-top: 44px; */
 }
 
