@@ -19,7 +19,8 @@
       @pullingUp="loadMore"
     >
 
-      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
+      <!-- <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/> -->
+      <miti-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"></miti-swiper>
       <recommend-view :recommends="recommends" />
       <feature-view />
       <tab-control
@@ -47,6 +48,8 @@ import Scroll from "components/common/scroll/Scroll";
 import BackTop from "components/content/backTop/BackTop";
 import {debounce} from "common/utils";
 import { itemListenerMixin } from "common/mixin.js";
+import MitiSwiper from "./childComps/MitiSwiper";
+
 
 export default {
   name: "Home",
@@ -58,7 +61,8 @@ export default {
     TabControl,
     GoodList,
     Scroll,
-    BackTop
+    BackTop,
+    MitiSwiper
   },
   mixins: [itemListenerMixin],
   data() {

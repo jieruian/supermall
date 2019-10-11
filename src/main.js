@@ -3,6 +3,16 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueLazyLoad from 'vue-lazyload'
+import 'vant/lib/index.css';
+
+import {
+  Swipe,
+  SwipeItem,
+  Lazyload,
+  Toast,
+} from 'vant';
+
+Vue.use(Swipe).use(SwipeItem).use(Lazyload).use(Toast);
 
 Vue.config.productionTip = false
 Vue.prototype.$bus = new Vue()
