@@ -5,6 +5,17 @@ import store from './store'
 import VueLazyLoad from 'vue-lazyload'
 import 'vant/lib/index.css';
 
+import toastSelf from 'components/common/toast/index'
+
+// import Swipe from 'vant/lib/swipe';
+// import 'vant/lib/swipe/style';
+// import SwipeItem from 'vant/lib/SwipeItem';
+// import 'vant/lib/SwipeItem/style';
+// import Lazyload from 'vant/lib/Lazyload';
+// import 'vant/lib/Lazyload/style';
+// import Toast from 'vant/lib/toast';
+// import 'vant/lib/toast/style';
+
 import {
   Swipe,
   SwipeItem,
@@ -12,7 +23,7 @@ import {
   Toast,
 } from 'vant';
 
-Vue.use(Swipe).use(SwipeItem).use(Lazyload).use(Toast);
+Vue.use(Swipe).use(SwipeItem).use(Lazyload).use(toastSelf).use(Toast);
 
 Vue.config.productionTip = false
 Vue.prototype.$bus = new Vue()

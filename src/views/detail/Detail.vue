@@ -130,7 +130,12 @@ export default {
   },
   methods: {
     addToCart() {
-      console.log("加入购物车");
+      console.log('加入购物车');
+      
+      this.$toast('加入购物车');
+      console.log(this.$toastSelf);
+      
+      // this.$toastSelf.show('加入购物车',2000)
       // 1.创建对象
         const product = {}
         // 2.对象信息
